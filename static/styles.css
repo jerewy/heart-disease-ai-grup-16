@@ -1,0 +1,88 @@
+/* styles.css */
+
+/* General body styling */
+body {
+    background-color: #f8f9fa; /* Light background for a clean and professional look */
+}
+
+/* Predict HTML */
+/* Container for the form */
+.form-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #fff; /* Clean white background */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Styling for the heading */
+.form-container h1 {
+    text-align: center;
+    color: #343a40; /* Dark color for headings */
+    margin-bottom: 20px;
+}
+
+/* Styling for the form fields */
+.form-control:focus {
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Highlight focused input */
+}
+
+/* Styling for the button */
+.btn-primary {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.is-invalid {
+    border-color: red;
+}
+.error-icon {
+    color: red;
+    margin-left: 5px;
+    display: inline; /* Ensure it's displayed when needed */
+}
+
+/* END PREDICT */
+
+
+/* Container for the result */
+.result-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #fff; /* Clean white background */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Styling for the heading */
+.result-container h1 {
+    text-align: center;
+    color: #343a40; /* Dark color for headings */
+    margin-bottom: 20px;
+}
+
+/* Styling for the result text */
+.result-text {
+    font-size: 1.5rem;
+    text-align: center;
+    color: #28a745; /* Green color for positive tone */
+}
+
+/* Styling for the button */
+.btn-primary {
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* Styling for high and low risk alerts */
+.alert-high-risk {
+    color: red;
+    font-weight: bold;
+}
+
+.alert-low-risk {
+    color: #28a745;
+    font-weight: bold;
+}

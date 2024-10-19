@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Prediction Result</title>
+    <!-- Bootstrap CSS for clean and responsive design -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Link to your external stylesheet -->
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="result-container">
+        <h1>Prediction Result</h1>
+
+        <!-- Display the formatted percentage based on risk -->
+        <p class="result-text">
+            Your risk of heart disease is: 
+            {% if result|float >= 90 %}
+                <span class="alert-high-risk">{{ result }}%</span>
+                <p class="text-danger">You are at high risk of heart disease. Please consult with a healthcare provider.</p>
+            {% else %}
+                <span class="alert-low-risk">{{ result }}%</span>
+                <p class="text-success">You are at a lower risk of heart disease, but it's always a good idea to maintain a healthy lifestyle.</p>
+            {% endif %}
+        </p>
+
+        <!-- Button to go back to the prediction form -->
+        <a href="/" class="btn btn-primary">Go back to the prediction form</a>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

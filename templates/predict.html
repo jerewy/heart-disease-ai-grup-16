@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Prediction Form</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Link to your external stylesheet -->
+    <link rel="stylesheet" href="/static/styles.css">
+    
+</head>
+<body>
+
+    <div class="form-container">
+        <h1>Heart Disease Prediction Form</h1>
+
+        <!-- Display flash messages for errors -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="alert alert-danger">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <form action="/predict" method="POST" class="needs-validation" novalidate>
+
+            <!-- Age input -->
+            <div class="mb-3">
+                <label for="age" class="form-label">Age</label>
+                <input type="number" class="form-control" id="age" name="age" 
+                       value="{{ request.form.get('age', '') }}" placeholder="Enter your age, e.g., 58" required min="0" max="120">
+                <div class="invalid-feedback">Please provide a valid age between 0 and 120.</div>
+            </div>
+
+            <!-- Sex dropdown -->
+            <div class="mb-3">
+                <label for="sex" class="form-label">Sex</label>
+                <select id="sex" name="sex" class="form-select" required>
+                    <option value="" {% if not request.form.get('sex') %}selected{% endif %}>Choose your sex</option>
+                    <option value="1" {% if request.form.get('sex') == '1' %}selected{% endif %}>Male (1)</option>
+                    <option value="0" {% if request.form.get('sex') == '0' %}selected{% endif %}>Female (0)</option>
+                </select>
+                <div class="invalid-feedback">Please select your sex.</div>
+            </div>
+
+            <!-- Chest pain type dropdown -->
+            <div class="mb-3">
+                <label for="cp" class="form-label">Chest Pain Type (cp)</label>
+                <select id="cp" name="cp" class="form-select" required>
+                    <option value="">Select chest pain type</option>
+                    <option value="0" {% if request.form.get('cp') == '0' %}selected{% endif %}>Typical Angina (0)</option>
+                    <option value="1" {% if request.form.get('cp') == '1' %}selected{% endif %}>Atypical Angina (1)</option>
+                    <option value="2" {% if request.form.get('cp') == '2' %}selected{% endif %}>Non-Anginal Pain (2)</option>
+                    <option value="3" {% if request.form.get('cp') == '3' %}selected{% endif %}>Asymptomatic (3)</option>
+                </select>
+                <div class="invalid-feedback">Please select a chest pain type.</div>
+            </div>
+
+            <!-- Resting blood pressure -->
+            <div class="mb-3">
+                <label for="trestbps" class="form-label">Resting Blood Pressure (trestbps)</label>
+                <input type="number" class="form-control" id="trestbps" name="trestbps" 
+                       value="{{ request.form.get('trestbps', '') }}" placeholder="e.g., 100" required min="80" max="200">
+                <div class="invalid-feedback">Please provide a valid resting blood pressure (between 80 and 200).</div>
+            </div>
+
+            <!-- Cholesterol input -->
+            <div class="mb-3">
+                <label for="chol" class="form-label">Cholesterol (chol)</label>
+                <input type="number" class="form-control" id="chol" name="chol" 
+                       value="{{ request.form.get('chol', '') }}" placeholder="e.g., 248" required>
+                <div class="invalid-feedback">Please provide a cholesterol value between 100 and 600 mg/dL.</div>
+                <span class="error-icon" id="chol-error" style="display: none;"></span>
+            </div>
+
+            <!-- Fasting blood sugar radio buttons -->
+            <div class="mb-3">
+                <label class="form-label">Fasting Blood Sugar > 120 mg/dL (fbs)</label><br>
+                <div class="form-check form-check-inline">
+                    <input type="radio" class="form-check-input" id="fbs_yes" name="fbs" value="1" 
+                           {% if request.form.get('fbs') == '1' %}checked{% endif %} required>
+                    <label for="fbs_yes" class="form-check-label">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" class="form-check-input" id="fbs_no" name="fbs" value="0" 
+                           {% if request.form.get('fbs') == '0' %}checked{% endif %} required>
+                    <label for="fbs_no" class="form-check-label">No</label>
+                </div>
+                <div class="invalid-feedback">Please select if your fasting blood sugar is greater than 120 mg/dL.</div>
+            </div>            
+
+            <!-- Resting ECG results dropdown -->
+            <div class="mb-3">
+                <label for="restecg" class="form-label">Resting ECG Results (restecg)</label>
+                <select id="restecg" name="restecg" class="form-select" required>
+                    <option value="">Select resting ECG result</option>
+                    <option value="0" {% if request.form.get('restecg') == '0' %}selected{% endif %}>Normal (0)</option>
+                    <option value="1" {% if request.form.get('restecg') == '1' %}selected{% endif %}>Having ST-T wave abnormality (1)</option>
+                    <option value="2" {% if request.form.get('restecg') == '2' %}selected{% endif %}>Left ventricular hypertrophy (2)</option>
+                </select>
+                <div class="invalid-feedback">Please select a resting ECG result.</div>
+            </div>
+
+            <!-- Maximum heart rate achieved -->
+            <div class="mb-3">
+                <label for="thalach" class="form-label">Max Heart Rate Achieved (thalach)</label>
+                <input type="number" class="form-control" id="thalach" name="thalach" 
+                       value="{{ request.form.get('thalach', '') }}" placeholder="e.g., 122" required>
+                <div class="invalid-feedback">Please provide a valid heart rate between 0 and 220.</div>
+                <span class="error-icon" id="thalach-error" style="display: none;"></span>
+            </div>
+
+            <!-- Exercise-induced angina -->
+            <div class="mb-3">
+                <label class="form-label">Exercise-Induced Angina (exang)</label><br>
+                <div class="form-check form-check-inline">
+                    <input type="radio" class="form-check-input" id="exang_yes" name="exang" value="1"
+                    {% if request.form.get('exang') == '1' %}checked{% endif %} required>
+                    <label for="exang_yes" class="form-check-label">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" class="form-check-input" id="exang_no" name="exang" value="0"
+                    {% if request.form.get('exang') == '0' %}checked{% endif %} required>
+                    <label for="exang_no" class="form-check-label">No</label>
+                </div>
+                <div class="invalid-feedback">Please select if exercise-induced angina occurred.</div>
+            </div>
+
+            <!-- ST depression -->
+            <div class="mb-3">
+                <label for="oldpeak" class="form-label">ST Depression (oldpeak)</label>
+                <input type="number" step="0.1" class="form-control" id="oldpeak" name="oldpeak" 
+                       value="{{ request.form.get('oldpeak', '') }}" placeholder="e.g., 1.5" required>
+                <div class="invalid-feedback">Please provide a valid ST depression value.</div>
+                <span class="error-icon" id="oldpeak-error" style="display: none;"></span>
+            </div>
+
+            <!-- Number of major vessels colored by fluoroscopy -->
+            <div class="mb-3">
+                <label for="ca" class="form-label">Number of Major Vessels Colored by Fluoroscopy (ca)</label>
+                <input type="number" class="form-control" id="ca" name="ca" min="0" max="4" 
+                    value="{{ request.form.get('ca', '') }}" placeholder="e.g., 0" required>
+                <div class="invalid-feedback">Please provide a valid number of vessels between 0 and 4.</div>
+            </div>
+
+
+            <!-- Thalassemia results dropdown -->
+            <div class="mb-3">
+                <label for="thal" class="form-label">Thalassemia (thal)</label>
+                <select id="thal" name="thal" class="form-select" required>
+                    <option value="">Select thalassemia type</option>
+                    <option value="1" {% if request.form.get('thal') == '1' %}selected{% endif %}>Normal (1)</option>
+                    <option value="2" {% if request.form.get('thal') == '2' %}selected{% endif %}>Fixed Defect (2)</option>
+                    <option value="3" {% if request.form.get('thal') == '3' %}selected{% endif %}>Reversible Defect (3)</option>
+                </select>
+                <div class="invalid-feedback">Please select a thalassemia type.</div>
+            </div>
+
+            <!-- Slope of the peak exercise ST segment -->
+            <div class="mb-3">
+                <label for="slope" class="form-label">Slope of the Peak Exercise ST Segment (slope)</label>
+                <select id="slope" name="slope" class="form-select" required>
+                    <option value="">Select slope type</option>
+                    <option value="1" {% if request.form.get('slope') == '1' %}selected{% endif %}>Upsloping (1)</option>
+                    <option value="2" {% if request.form.get('slope') == '2' %}selected{% endif %}>Flat (2)</option>
+                    <option value="3" {% if request.form.get('slope') == '3' %}selected{% endif %}>Downsloping(3)</option>
+                </select>
+                <div class="invalid-feedback">Please select the slope of the peak exercise ST segment.</div>
+            </div>
+
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary">Predict</button>
+            
+        </form>
+    </div>
+
+    <!-- Bootstrap JS for validation -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // JavaScript for real-time validation and preventing form reset on failure
+        const form = document.querySelector('.needs-validation');
+
+        form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+                event.preventDefault(); // Prevent form from submitting if invalid
+                event.stopPropagation(); // Stop further propagation
+            }
+            form.classList.add('was-validated');
+        });
+
+        // Real-time validation
+        const inputs = form.querySelectorAll('input, select');
+        inputs.forEach(input => {
+            input.addEventListener('input', function () {
+                const errorIcon = document.getElementById(`${input.name}-error`);
+                if (input.checkValidity()) {
+                    input.classList.remove('is-invalid');
+                    input.classList.add('is-valid');
+                    errorIcon.style.display = 'none'; // Hide error icon
+                } else {
+                    input.classList.remove('is-valid');
+                    input.classList.add('is-invalid');
+                    errorIcon.style.display = 'inline'; // Show error icon
+                }
+                // Additional validations for specific fields
+                if (input.id === 'age') {
+                    if (input.value < 0 || input.value > 120) {
+                        input.classList.add('is-invalid');
+                        errorIcon.style.display = 'inline';
+                    }
+                }
+                // Additional validations for specific fields
+                if (input.id === 'trestbps') {
+                    if (input.value < 80 || input.value > 200) {
+                        input.classList.add('is-invalid');
+                        errorIcon.style.display = 'inline';
+                    }
+                }
+                if (input.id === 'chol') {
+                    if (input.value < 100 || input.value > 600) {
+                        input.classList.add('is-invalid');
+                        errorIcon.style.display = 'inline';
+                    }
+                }
+                if (input.id === 'thalach') {
+                    if (input.value < 0 || input.value > 220) { // Adjust max value as needed
+                        input.classList.add('is-invalid');
+                        errorIcon.style.display = 'inline';
+                    }
+                }
+                if (input.id === 'oldpeak') {
+                    if (input.value < 0) { // Adjust min value as needed
+                        input.classList.add('is-invalid');
+                        errorIcon.style.display = 'inline';
+                    }
+                }
+                if (input.id === 'ca') {
+                    if (input.value < 0 || input.value > 4) {
+                        input.classList.add('is-invalid');
+                        errorIcon.style.display = 'inline';
+                    }
+                }// Additional validations for specific fields
+                
+            });
+        });
+    </script>    
+
+</body>
+</html>
