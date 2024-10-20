@@ -42,8 +42,8 @@ def validate_input(age, chol, trestbps, thalach, oldpeak, ca):
         return False, "Max Heart Rate must be between 60 and 200 beats per minute."
     if oldpeak < 0 or oldpeak > 6:
         return False, "ST Depression must be between 0 and 6."
-    if ca < 0 or ca > 4:
-        return False, "Number of Major Vessels must be between 0 and 4."
+    if ca < 0 or ca > 3:
+        return False, "Number of Major Vessels must be between 0 and 3."
     return True, None
 
 

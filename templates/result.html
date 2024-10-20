@@ -16,9 +16,12 @@
         <!-- Display the formatted percentage based on risk -->
         <p class="result-text">
             Your risk of heart disease is: 
-            {% if result|float >= 90 %}
+            {% if result|float >= 70 %}
                 <span class="alert-high-risk">{{ result }}%</span>
                 <p class="text-danger">You are at high risk of heart disease. Please consult with a healthcare provider.</p>
+            {% elif result|float >= 40 %}
+                <span class="alert-moderate-risk">{{ result }}%</span>
+                <p class="text-warning">You are at moderate risk of heart disease. Consider discussing your risk with a healthcare provider.</p>
             {% else %}
                 <span class="alert-low-risk">{{ result }}%</span>
                 <p class="text-success">You are at a lower risk of heart disease, but it's always a good idea to maintain a healthy lifestyle.</p>

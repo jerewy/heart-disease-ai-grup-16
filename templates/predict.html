@@ -110,7 +110,7 @@
                 <label for="thalach" class="form-label">Max Heart Rate Achieved (thalach)</label>
                 <input type="number" class="form-control" id="thalach" name="thalach" 
                        value="{{ request.form.get('thalach', '') }}" placeholder="e.g., 122" required>
-                <div class="invalid-feedback">Please provide a valid heart rate between 0 and 220.</div>
+                <div class="invalid-feedback">Please provide a valid heart rate between 0 and 200.</div>
                 <span class="error-icon" id="thalach-error" style="display: none;"></span>
             </div>
 
@@ -135,16 +135,16 @@
                 <label for="oldpeak" class="form-label">ST Depression (oldpeak)</label>
                 <input type="number" step="0.1" class="form-control" id="oldpeak" name="oldpeak" 
                        value="{{ request.form.get('oldpeak', '') }}" placeholder="e.g., 1.5" required>
-                <div class="invalid-feedback">Please provide a valid ST depression value.</div>
+                <div class="invalid-feedback">Please provide a valid ST depression value between 0 and 6.</div>
                 <span class="error-icon" id="oldpeak-error" style="display: none;"></span>
             </div>
 
             <!-- Number of major vessels colored by fluoroscopy -->
             <div class="mb-3">
                 <label for="ca" class="form-label">Number of Major Vessels Colored by Fluoroscopy (ca)</label>
-                <input type="number" class="form-control" id="ca" name="ca" min="0" max="4" 
+                <input type="number" class="form-control" id="ca" name="ca" min="0" max="3" 
                     value="{{ request.form.get('ca', '') }}" placeholder="e.g., 0" required>
-                <div class="invalid-feedback">Please provide a valid number of vessels between 0 and 4.</div>
+                <div class="invalid-feedback">Please provide a valid number of vessels between 0 and 3.</div>
             </div>
 
 
@@ -153,9 +153,9 @@
                 <label for="thal" class="form-label">Thalassemia (thal)</label>
                 <select id="thal" name="thal" class="form-select" required>
                     <option value="">Select thalassemia type</option>
-                    <option value="1" {% if request.form.get('thal') == '1' %}selected{% endif %}>Normal (1)</option>
-                    <option value="2" {% if request.form.get('thal') == '2' %}selected{% endif %}>Fixed Defect (2)</option>
-                    <option value="3" {% if request.form.get('thal') == '3' %}selected{% endif %}>Reversible Defect (3)</option>
+                    <option value="0" {% if request.form.get('thal') == '1' %}selected{% endif %}>Normal (0)</option>
+                    <option value="1" {% if request.form.get('thal') == '2' %}selected{% endif %}>Fixed Defect (1)</option>
+                    <option value="2" {% if request.form.get('thal') == '3' %}selected{% endif %}>Reversible Defect (2)</option>
                 </select>
                 <div class="invalid-feedback">Please select a thalassemia type.</div>
             </div>
@@ -227,19 +227,19 @@
                     }
                 }
                 if (input.id === 'thalach') {
-                    if (input.value < 0 || input.value > 220) { // Adjust max value as needed
+                    if (input.value < 0 || input.value > 200) { // Adjust max value as needed
                         input.classList.add('is-invalid');
                         errorIcon.style.display = 'inline';
                     }
                 }
                 if (input.id === 'oldpeak') {
-                    if (input.value < 0) { // Adjust min value as needed
+                    if (input.value < 0 || input.value > 6) { // Adjust min value as needed
                         input.classList.add('is-invalid');
                         errorIcon.style.display = 'inline';
                     }
                 }
                 if (input.id === 'ca') {
-                    if (input.value < 0 || input.value > 4) {
+                    if (input.value < 0 || input.value > 3) {
                         input.classList.add('is-invalid');
                         errorIcon.style.display = 'inline';
                     }

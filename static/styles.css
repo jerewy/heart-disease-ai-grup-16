@@ -76,13 +76,30 @@ body {
     margin-top: 20px;
 }
 
-/* Styling for high and low risk alerts */
+/* High Risk */
 .alert-high-risk {
-    color: red;
+    color: #ff0000; /* Red color for high risk */
     font-weight: bold;
+    font-size: 1.5em; /* Larger font size for emphasis */
 }
 
-.alert-low-risk {
-    color: #28a745;
+/* Moderate Risk */
+.alert-moderate-risk {
+    color: #ffa500; /* Orange color for moderate risk */
     font-weight: bold;
+    font-size: 1.5em; /* Larger font size for emphasis */
 }
+
+/* Low Risk */
+.alert-low-risk {
+    color: #008000; /* Green color for low risk */
+    font-weight: bold;
+    font-size: 1.5em; /* Larger font size for emphasis */
+}
+
+/* Additional styling for result text */
+.result-text {
+    margin-top: 20px;
+    text-align: center; /* Center the text */
+}
+
