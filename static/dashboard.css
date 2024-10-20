@@ -1,0 +1,41 @@
+/* dashboard.css */
+
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa; /* Light background for a clean and professional look */
+    margin: 0; /* Remove default body margin */
+    padding: 0; /* Remove default body padding */
+}
+
+/* Content Styles */
+.content {
+    max-width: 800px; /* Limit the maximum width for better readability */
+    margin: 20px auto; /* Center the content with auto left/right margins */
+    padding: 20px; /* Inner padding for the content area */
+    background-color: #fff; /* Clean white background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Specific styles for headings */
+h1, h2 {
+    margin: 0; /* Remove default margins */
+    padding: 10px 0; /* Add padding instead of margin for spacing */
+}
+
+/* Styling for statistics */
+.statistics ul {
+    padding-left: 20px; /* Indent the list for clarity */
+    margin-top: 10px; /* Add a bit of space above the list */
+}
+
+/* Next Steps Section */
+.next-steps {
+    margin-top: 20px; /* Space above next steps */
+    padding: 10px;
+    border: 1px solid #007bff; /* Blue border for emphasis */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #e7f1ff; /* Light blue background */
+}
+

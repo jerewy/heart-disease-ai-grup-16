@@ -1,0 +1,36 @@
+/* form.css */
+/* Container for the form */
+.form-container {
+    max-width: 600px;
+    margin: 20px auto; /* Less top margin */
+    padding: 30px;
+    background-color: #fff; /* Clean white background */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Styling for the heading */
+.form-container h1 {
+    text-align: center;
+    color: #343a40; /* Dark color for headings */
+    margin-bottom: 20px;
+}
+
+/* Styling for the form fields */
+.form-control:focus {
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Highlight focused input */
+}
+
+/* Button styling */
+.btn-primary {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.is-invalid {
+    border-color: red;
+}
+.error-icon {
+    color: red;
+    margin-left: 5px;
+}

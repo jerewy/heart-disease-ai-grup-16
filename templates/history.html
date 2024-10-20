@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction History</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav class="main-navbar">
+        <ul>
+            <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('predict') }}">Predict</a></li>
+            <li><a href="{{ url_for('history') }}">History</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1 class="text-center">Prediction History</h1>
+
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="alert alert-info">
+              {% for message in messages %}
+                <p>{{ message }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead class="thead-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>Age</th>
+                        <th>Cholesterol</th>
+                        <th>Resting BP</th>
+                        <th>Max Heart Rate</th>
+                        <th>ST Depression</th>
+                        <th>Number of Major Vessels</th>
+                        <th>Chest Pain Type</th>
+                        <th>Fasting Blood Sugar</th>
+                        <th>Resting ECG</th>
+                        <th>Exercise-Induced Angina</th>
+                        <th>Slope</th>
+                        <th>Thalassemia</th>
+                        <th>Result</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for prediction in predictions %}
+                    <tr>
+                        <td>{{ prediction.id }}</td>
+                        <td>{{ prediction.age }}</td>
+                        <td>{{ prediction.chol }}</td>
+                        <td>{{ prediction.trestbps }}</td>
+                        <td>{{ prediction.thalach }}</td>
+                        <td>{{ prediction.oldpeak }}</td>
+                        <td>{{ prediction.ca }}</td>
+                        <td>{{ prediction.cp }}</td>
+                        <td>{{ prediction.fbs }}</td>
+                        <td>{{ prediction.restecg }}</td>
+                        <td>{{ prediction.exang }}</td>
+                        <td>{{ prediction.slope }}</td>
+                        <td>{{ prediction.thal }}</td>
+                        <td>{{ prediction.result }}</td>
+                        <td>
+                            <form action="{{ url_for('delete_prediction', prediction_id=prediction.id) }}" method="POST" style="display:inline;">
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Button centered below the table -->
+    <div class="text-center bottom-button">
+        <a href="{{ url_for('predict') }}" class="btn btn-primary history-button">Go back to prediction</a>
+    </div>
+
+    <footer class="main-footer">
+        <p>© 2024 Heart Prediction AI GRUP 16</p>
+    </footer>
+</body>
+</html>

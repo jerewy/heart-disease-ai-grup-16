@@ -1,0 +1,83 @@
+/* result.css */
+/* Container for the result */
+.result-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #fff; /* Clean white background */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Styling for the heading */
+.result-container h1 {
+    text-align: center;
+    color: #343a40; /* Dark color for headings */
+    margin-bottom: 20px;
+}
+
+/* Styling for the result text */
+.result-text {
+    font-size: 1.5rem;
+    text-align: center;
+    color: #28a745; /* Green color for positive tone */
+}
+
+/* Alert styles for risk levels */
+.alert-high-risk {
+    color: #ff0000; /* Red color for high risk */
+    font-weight: bold;
+    font-size: 1.5em; /* Larger font size for emphasis */
+}
+
+.alert-moderate-risk {
+    color: #ffa500; /* Orange color for moderate risk */
+    font-weight: bold;
+    font-size: 1.5em; /* Larger font size for emphasis */
+}
+
+.alert-low-risk {
+    color: #008000; /* Green color for low risk */
+    font-weight: bold;
+    font-size: 1.5em; /* Larger font size for emphasis */
+}
+
+/* Additional styling for result text */
+.result-text {
+    margin-top: 20px;
+    text-align: center; /* Center the text */
+}
+
+.text-center {
+    margin-top: 20px; /* Space above the buttons */
+}
+
+/* Button styles for prediction and history links */
+.btn-secondary {
+    background-color: #6c757d; /* Grey color */
+    border-color: #6c757d; /* Match border */
+    color: white; /* White text */
+    padding: 10px 20px; /* Padding for buttons */
+    font-size: 16px; /* Font size */
+    border-radius: 5px; /* Rounded corners */
+    margin-right: 10px; /* Space between buttons */
+    transition: background-color 0.3s ease; /* Smooth transition for hover */
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268; /* Darker grey on hover */
+}
+
+.btn-info {
+    background-color: #17a2b8; /* Blue color */
+    border-color: #17a2b8; /* Match border */
+    color: white; /* White text */
+    padding: 10px 20px; /* Padding for buttons */
+    font-size: 16px; /* Font size */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease; /* Smooth transition for hover */
+}
+
+.btn-info:hover {
+    background-color: #138496; /* Darker blue on hover */
+}

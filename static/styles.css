@@ -1,105 +1,66 @@
-/* styles.css */
+@import url('dashboard.css');
+@import url('form.css');
+@import url('result.css');
+@import url('footer.css');
+@import url('history.css');
 
-/* General body styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    background-color: #f8f9fa; /* Light background for a clean and professional look */
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensures the footer sticks to the bottom */
+    margin: 0;
 }
 
-/* Predict HTML */
-/* Container for the form */
-.form-container {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 30px;
-    background-color: #fff; /* Clean white background */
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+/* Navbar Styles */
+.main-navbar {
+    background-color: #333;
+    padding: 0.5em; /* Adjust padding as needed */
+    height: 55px; /* Fixed height */
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Center items vertically */
 }
 
-/* Styling for the heading */
-.form-container h1 {
+.main-navbar ul {
+    list-style-type: none; /* Remove default list styles */
+    margin: 0; /* Remove margin */
+    padding: 0; /* Remove padding */
+}
+
+.main-navbar ul li {
+    display: inline; /* Horizontal list items */
+    margin-right: 20px; /* Space between items */
+}
+
+.main-navbar ul li a {
+    color: white; /* White text */
+    text-decoration: none; /* Remove underline */
+    padding: 0.5em 1em; /* Uniform padding */
+    font-size: 16px; /* Consistent font size */
+}
+
+.main-navbar ul li a:hover {
+    background-color: #575757; /* Darker background on hover */
+}
+
+/* Footer Styles */
+.main-footer, footer {
     text-align: center;
-    color: #343a40; /* Dark color for headings */
-    margin-bottom: 20px;
+    padding: 1em; /* Keep consistent padding */
+    background-color: #333; /* Dark background */
+    color: white; /* White text */
+    width: 100%; /* Full width */
+    position: relative; /* Maintain relative positioning */
+    margin-top: auto; /* Push footer to the bottom */
 }
 
-/* Styling for the form fields */
-.form-control:focus {
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Highlight focused input */
+footer p {
+    margin-bottom: 0; /* Set the margin-bottom to zero */
 }
-
-/* Styling for the button */
-.btn-primary {
-    width: 100%;
-    margin-top: 20px;
-}
-
-.is-invalid {
-    border-color: red;
-}
-.error-icon {
-    color: red;
-    margin-left: 5px;
-    display: inline; /* Ensure it's displayed when needed */
-}
-
-/* END PREDICT */
-
-
-/* Container for the result */
-.result-container {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 30px;
-    background-color: #fff; /* Clean white background */
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-}
-
-/* Styling for the heading */
-.result-container h1 {
-    text-align: center;
-    color: #343a40; /* Dark color for headings */
-    margin-bottom: 20px;
-}
-
-/* Styling for the result text */
-.result-text {
-    font-size: 1.5rem;
-    text-align: center;
-    color: #28a745; /* Green color for positive tone */
-}
-
-/* Styling for the button */
-.btn-primary {
-    width: 100%;
-    margin-top: 20px;
-}
-
-/* High Risk */
-.alert-high-risk {
-    color: #ff0000; /* Red color for high risk */
-    font-weight: bold;
-    font-size: 1.5em; /* Larger font size for emphasis */
-}
-
-/* Moderate Risk */
-.alert-moderate-risk {
-    color: #ffa500; /* Orange color for moderate risk */
-    font-weight: bold;
-    font-size: 1.5em; /* Larger font size for emphasis */
-}
-
-/* Low Risk */
-.alert-low-risk {
-    color: #008000; /* Green color for low risk */
-    font-weight: bold;
-    font-size: 1.5em; /* Larger font size for emphasis */
-}
-
-/* Additional styling for result text */
-.result-text {
-    margin-top: 20px;
-    text-align: center; /* Center the text */
-}
-

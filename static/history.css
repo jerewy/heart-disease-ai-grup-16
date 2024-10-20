@@ -1,0 +1,89 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif; /* Clean font */
+    background-color: #f8f9fa; /* Light background */
+}
+
+/* Container for content */
+.container {
+    flex: 1; /* Allow growth */
+    max-width: 1200px; /* Increased max width for better readability */
+    margin: 20px auto; /* Centering */
+    padding: 20px; /* Inner padding */
+    background-color: #fff; /* White background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow */
+}
+
+/* Table styles */
+.table {
+    width: 100%; /* Full width */
+    margin-top: 20px; /* Space above */
+    border-collapse: collapse; /* Collapse borders */
+}
+
+/* Table header and cell styles */
+.table th, .table td {
+    padding: 12px; /* Cell padding */
+    border: 1px solid #dee2e6; /* Light gray border */
+}
+
+.table th {
+    background-color: #6c757d; /* Soft gray background for header */
+    color: white; /* White text */
+    font-weight: bold; /* Bold text */
+}
+
+.table td {
+    text-align: center; /* Center-align text */
+}
+
+/* Responsive table */
+.table-responsive {
+    overflow-x: auto; /* Allow horizontal scroll */
+}
+
+/* Hover effect for rows */
+.table tr:hover {
+    background-color: #f1f1f1; /* Light hover */
+}
+
+/* Styling for the button container */
+.bottom-button {
+    margin-top: 20px; /* Space above */
+    padding: 15px; /* Inner padding */
+}
+
+/* Center the button */
+.text-center {
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center items horizontally */
+}
+
+/* Button styling for history page */
+.history-button {
+    width: fit-content; /* Size to content */
+    background-color: #007bff; /* Soft blue color */
+    border-color: #007bff; /* Match border */
+    color: white; /* White text */
+    padding: 5px 10px; /* Smaller padding */
+    font-size: 14px; /* Smaller font size */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease; /* Smooth transition for hover */
+}
+
+.history-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    border-color: #0056b3; /* Match border to hover */
+}
+
+/* Footer styles */
+.main-footer {
+    text-align: center;
+    padding: 1em;
+    background-color: #333; /* Dark background */
+    color: white; /* White text */
+    width: 100%; /* Full width */
+    position: relative; /* Relative positioning */
+    margin-top: 20px; /* Space above footer */
+}
