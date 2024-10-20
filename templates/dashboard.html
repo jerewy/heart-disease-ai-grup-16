@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <nav class="main-navbar">
@@ -22,7 +22,7 @@
             <h2>Overview</h2>
             <p>This dashboard provides insights into heart disease predictions and historical data.</p>
         </section>
-    
+
         <section class="statistics">
             <h2>Statistics</h2>
             <ul>
@@ -33,6 +33,32 @@
                     <li>ID: {{ prediction.id }} - Age: {{ prediction.age }}, Risk: {{ prediction.result }}</li>
                     {% endfor %}
                 </ul>
+            </ul>
+        </section>
+
+        <section class="chart-container">
+            <canvas id="riskDistributionChart"></canvas> <!-- Placeholder for chart -->
+        </section>
+
+        <section class="global-statistics">
+            <h2>Global Heart Disease Statistics</h2>
+            <p>As of 2024:</p>
+            <ul>
+                <li>Approximately 640 million people worldwide are living with heart and circulatory diseases.</li>
+                <li>Heart diseases cause nearly 1 in 3 deaths globally, amounting to an estimated 20 million deaths in 2021.</li>
+                <li>The most common cardiovascular conditions include coronary heart disease, stroke, and atrial fibrillation.</li>
+                <li>Over 4 in 5 deaths from heart diseases are associated with modifiable risk factors.</li>
+            </ul>
+            <p>These statistics underline the importance of regular check-ups and lifestyle modifications.</p>
+        </section>
+
+        <section class="health-tips">
+            <h2>Heart Health Tips</h2>
+            <ul>
+                <li>Maintain a balanced diet rich in fruits and vegetables.</li>
+                <li>Engage in regular physical activity.</li>
+                <li>Keep track of your blood pressure and cholesterol levels.</li>
+                <li>Avoid smoking and excessive alcohol consumption.</li>
             </ul>
         </section>
     
@@ -48,5 +74,41 @@
     <footer class="main-footer">
         <p>© 2024 Heart Prediction AI GRUP 16</p>
     </footer>
+
+    <script>
+        // Your Chart.js code here
+        const riskData = {
+            labels: ['Low Risk', 'Moderate Risk', 'High Risk'],
+            datasets: [{
+                label: 'Risk Level Distribution',
+                data: [{{ low_risk_count }}, {{ moderate_risk_count }}, {{ high_risk_count }}],
+                backgroundColor: ['#36a2eb', '#ffce56', '#ff6384'],
+                borderColor: '#fff',
+                borderWidth: 1
+            }]
+        };
+
+        const config = {
+            type: 'pie',
+            data: riskData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Distribution of Risk Levels'
+                    }
+                }
+            },
+        };
+
+        const riskDistributionChart = new Chart(
+            document.getElementById('riskDistributionChart'),
+            config
+        );
+    </script>
 </body>
 </html>

@@ -1,6 +1,9 @@
-from flask import Flask, render_template, request, flash
+from flask import Flask, render_template, request, flash, redirect, url_for
+from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate  # Import Migrate
+from sqlalchemy import func
+import pandas as pd  # Ensure Pandas is imported
 import joblib
 import numpy as np
 
@@ -43,9 +46,28 @@ class Prediction(db.Model):
 
 # Manually test the prediction with a sample input
 if model is not None:
-    test_features = np.array([[3, 0, 165, 1.0, 2, 55, 250, 140, 0, 2, 1, 1, 0]])  # Example values
+    # Example values in the correct order
+    test_features = np.array([[55, 1, 3, 140, 250, 0, 1, 165, 0, 1.0, 2, 0, 2]])  # Example values
+    # Create a DataFrame with the correct feature names in the specified order
+    feature_names = ['age', 'sex', 'cp', 'trestbps', 'chol', 'fbs', 'restecg', 'thalach', 'exang', 'oldpeak', 'slope', 'ca', 'thal']
+    test_df = pd.DataFrame(test_features, columns=feature_names)
+
+    print("Test DataFrame for prediction:")
+    print(test_df)
+
     try:
-        manual_prediction = model.predict(test_features)
+        # Predict the probability using the model
+        probabilities = model.predict_proba(test_df)
+        heart_disease_risk = probabilities[0][1] * 100  # Convert to percentage
+        print(f"Manual Prediction Output: {heart_disease_risk:.3f}%")
+    except Exception as e:
+        print(f"Error during manual prediction: {e}")
+else:
+    print("Model is not available.")
+
+if model:
+    try:
+        manual_prediction = model.predict(test_df)
         print(f"Manual Prediction Output: {manual_prediction}")
     except Exception as e:
         print(f"Error during manual prediction: {e}")
@@ -53,18 +75,28 @@ else:
     print("Model is not available.")
 
 
+
 # Route for the home page (prediction form)
 @app.route('/')
 def home():
     return render_template('predict.html')
 
-# Route for the dashboard
 @app.route('/dashboard')
 def dashboard():
-    total_predictions = Prediction.query.count()  # Count of total predictions
-    recent_predictions = Prediction.query.order_by(Prediction.id.desc()).limit(5).all()  # Last 5 predictions
+    total_predictions = Prediction.query.count()
+    recent_predictions = Prediction.query.order_by(Prediction.id.desc()).limit(5).all()
 
-    return render_template('dashboard.html', total_predictions=total_predictions, recent_predictions=recent_predictions)
+    # New: Count risk levels
+    low_risk_count = Prediction.query.filter(Prediction.result == 'Low Risk').count()
+    moderate_risk_count = Prediction.query.filter(Prediction.result == 'Moderate Risk').count()
+    high_risk_count = Prediction.query.filter(Prediction.result == 'High Risk').count()
+
+    return render_template('dashboard.html', 
+                           total_predictions=total_predictions, 
+                           recent_predictions=recent_predictions, 
+                           low_risk_count=low_risk_count,
+                           moderate_risk_count=moderate_risk_count,
+                           high_risk_count=high_risk_count)
 
 
 def validate_input(age, chol, trestbps, thalach, oldpeak, ca):
@@ -112,9 +144,10 @@ def predict():
             flash(error_message)
             return render_template('predict.html')
 
-        # Prepare features for prediction
-        features = np.array([[cp, ca, thalach, oldpeak, thal, age, chol, trestbps, exang, slope, sex, restecg, fbs]])
-        print(f"Features for prediction: {features}")
+        # Prepare features for prediction as a DataFrame with the correct feature names
+        feature_names = ['age', 'sex', 'cp', 'trestbps', 'chol', 'fbs', 'restecg', 'thalach', 'exang', 'oldpeak', 'slope', 'ca', 'thal']
+        features = pd.DataFrame([[age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal]], columns=feature_names)
+        print(f"Features for prediction:\n{features}")
 
         if model:
             try:

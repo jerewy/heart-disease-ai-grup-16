@@ -7,7 +7,7 @@ body {
 /* Container for content */
 .container {
     flex: 1; /* Allow growth */
-    max-width: 1200px; /* Increased max width for better readability */
+    max-width: 1350px; /* Increased max width for better readability */
     margin: 20px auto; /* Centering */
     padding: 20px; /* Inner padding */
     background-color: #fff; /* White background */
