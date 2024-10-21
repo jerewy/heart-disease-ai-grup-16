@@ -1,0 +1,17 @@
+{
+    "name": "heart-disease-prediction",
+    "version": "1.0.0",
+    "description": "A web application for heart disease prediction using Flask.",
+    "main": "server.py",
+    "scripts": {
+      "start": "python server.py"
+    },
+    "dependencies": {
+      "flask": "^2.0.1",
+      "flask_sqlalchemy": "^2.5.1",
+      "flask_migrate": "^3.1.0",
+      "joblib": "^1.0.1",
+      "numpy": "^1.21.0"
+    }
+  }
+  
