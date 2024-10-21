@@ -2,9 +2,9 @@
     "name": "heart-disease-prediction",
     "version": "1.0.0",
     "description": "A web application for heart disease prediction using Flask.",
-    "main": "server.py",
+    "main": "app.py",
     "scripts": {
-      "start": "python server.py"
+      "start": "python app.py"
     },
     "dependencies": {
       "flask": "^2.0.1",
