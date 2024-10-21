@@ -79,7 +79,7 @@ else:
 # Route for the home page (prediction form)
 @app.route('/')
 def home():
-    return render_template('predict.html')
+    return render_template('dashboard.html')
 
 @app.route('/dashboard')
 def dashboard():
@@ -172,7 +172,9 @@ def predict():
                 db.session.add(new_prediction)
                 db.session.commit()
 
-                return render_template('result.html', result=f"{heart_disease_risk:.3f}", risk_level=risk_level)
+                # Render the result page, passing the prediction ID
+                return render_template('result.html', result=f"{heart_disease_risk:.3f}", 
+                                    risk_level=risk_level, prediction_id=new_prediction.id)
 
             except Exception as e:
                 flash(f"Error making prediction: {e}")

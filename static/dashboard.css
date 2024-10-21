@@ -78,6 +78,10 @@ h1, h2 {
     color: #007bff; /* Blue color for headings */
 }
 
+.health-tips  ul {
+    padding-left: 20px;
+}
+
 .global-statistics ul {
     padding-left: 20px; /* Indent for list items */
 }

@@ -23,6 +23,14 @@
     color: #28a745; /* Green color for positive tone */
 }
 
+/* Styling for the prediction ID */
+.prediction-id {
+    font-size: 1.2rem;
+    text-align: center;
+    color: #007bff; /* Blue color for emphasis */
+    margin-top: 10px;
+}
+
 /* Alert styles for risk levels */
 .alert-high-risk {
     color: #ff0000; /* Red color for high risk */
@@ -80,4 +88,20 @@
 
 .btn-info:hover {
     background-color: #138496; /* Darker blue on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .result-container {
+        padding: 15px; /* Less padding on small screens */
+    }
+
+    .result-text, .prediction-id {
+        font-size: 1.2rem; /* Smaller text on small screens */
+    }
+
+    .btn-secondary, .btn-info {
+        width: 100%; /* Full-width buttons on small screens */
+        margin: 5px 0; /* Margin for spacing */
+    }
 }

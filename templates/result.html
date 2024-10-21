@@ -23,11 +23,12 @@
     <div class="result-container">
         <h1>Prediction Result</h1>
         <p>Your risk of heart disease is: {{ prediction }}</p>
+        <p>Your Prediction ID: <strong class="prediction-id">{{ prediction_id }}</strong></p> <!-- Display the prediction ID -->
         <div class="text-center">
             <a href="{{ url_for('home') }}" class="btn btn-secondary">Go back to prediction</a>
             <a href="{{ url_for('history') }}" class="btn btn-info">View History</a>
         </div>        
-
+    
         <!-- Display the formatted percentage based on risk -->
         <p class="result-text">
             Your risk of heart disease is: 
@@ -42,10 +43,10 @@
                 <p class="text-success">You are at a lower risk of heart disease, but it's always a good idea to maintain a healthy lifestyle.</p>
             {% endif %}
         </p>
-    
+        
         <!-- Button to go back to the prediction form -->
         <a href="/" class="btn btn-primary">Go back to the prediction form</a>
-    </div>
+    </div>    
 
     <footer class="main-footer">
         <p>© 2024 Heart Prediction AI GRUP 16</p>
