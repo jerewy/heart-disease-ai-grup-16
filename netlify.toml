@@ -1,0 +1,6 @@
+[build]
+  command = "pip install -r requirements.txt && python app.py"  # Adjust the command as necessary
+  publish = "path/to/static/files"  # Change this to the directory containing your static files
+
+[functions]
+  directory = "netlify/functions"  # If you're using serverless functions, specify their directory
