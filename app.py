@@ -154,7 +154,14 @@ def predict():
                 # Predict the probability using the model
                 probabilities = model.predict_proba(features)
                 heart_disease_risk = probabilities[0][1] * 100  # Convert to percentage
-                risk_level = "High Risk" if heart_disease_risk >= 50 else "Low Risk"
+                
+                # Classify risk level based on the new thresholds
+                if heart_disease_risk < 40:
+                    risk_level = "Low Risk"
+                elif 40 <= heart_disease_risk < 70:
+                    risk_level = "Moderate Risk"
+                else:
+                    risk_level = "High Risk"
 
                 # Save to the database
                 new_prediction = Prediction(age=age, chol=chol, trestbps=trestbps,
