@@ -2,9 +2,11 @@ from flask import Flask, render_template, request, flash, redirect, url_for
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from sqlalchemy import func
+import pandas as pd
 import joblib
-import numpy as np
 import os
+import numpy as np
 
 # Initialize the Flask app
 app = Flask(__name__)
@@ -24,6 +26,21 @@ try:
 except Exception as e:
     model = None
     print(f"Error loading model: {e}")
+    
+def validate_input(age, chol, trestbps, thalach, oldpeak, ca):
+    if age < 0 or age > 120:
+        return False, "Age must be between 0 and 120."
+    if chol < 100 or chol > 600:
+        return False, "Cholesterol must be between 100 and 600 mg/dL."
+    if trestbps < 80 or trestbps > 200:
+        return False, "Resting Blood Pressure must be between 80 and 200 mm Hg."
+    if thalach < 60 or thalach > 200:
+        return False, "Max Heart Rate must be between 60 and 200 beats per minute."
+    if oldpeak < 0 or oldpeak > 6:
+        return False, "ST Depression must be between 0 and 6."
+    if ca < 0 or ca > 3:
+        return False, "Number of Major Vessels must be between 0 and 3."
+    return True, None
 
 class Prediction(db.Model):
     id = db.Column(db.Integer, primary_key=True)
