@@ -6,6 +6,7 @@ from sqlalchemy import func
 import pandas as pd  # Ensure Pandas is imported
 import joblib
 import numpy as np
+import os
 
 # Initialize the Flask app
 app = Flask(__name__)
@@ -209,4 +210,5 @@ def delete_prediction(prediction_id):
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()  # Creates the database tables based on your models
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)), debug=False)
+
