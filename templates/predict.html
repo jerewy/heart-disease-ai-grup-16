@@ -13,12 +13,13 @@
 <body>
 
     <nav class="main-navbar">
+        <div class="navbar-title">PredictMyHeart</div> <!-- This should be outside the <ul> -->
         <ul>
             <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
             <li><a href="{{ url_for('predict') }}">Predict</a></li>
             <li><a href="{{ url_for('history') }}">History</a></li>
         </ul>
-    </nav>  
+    </nav> 
 
     <div class="form-container">
         <h1>Heart Disease Prediction Form</h1>
@@ -118,7 +119,7 @@
                 <label for="thalach" class="form-label">Max Heart Rate Achieved (thalach)</label>
                 <input type="number" class="form-control" id="thalach" name="thalach" 
                        value="{{ request.form.get('thalach', '') }}" placeholder="e.g., 122" required>
-                <div class="invalid-feedback">Please provide a valid heart rate between 0 and 200.</div>
+                <div class="invalid-feedback">Please provide a valid heart rate between 60 and 200.</div>
                 <span class="error-icon" id="thalach-error" style="display: none;"></span>
             </div>
 
@@ -147,14 +148,18 @@
                 <span class="error-icon" id="oldpeak-error" style="display: none;"></span>
             </div>
 
-            <!-- Number of major vessels colored by fluoroscopy -->
+            <!-- Number of Major Vessels Colored by Fluoroscopy dropdown -->
             <div class="mb-3">
                 <label for="ca" class="form-label">Number of Major Vessels Colored by Fluoroscopy (ca)</label>
-                <input type="number" class="form-control" id="ca" name="ca" min="0" max="3" 
-                    value="{{ request.form.get('ca', '') }}" placeholder="e.g., 0" required>
-                <div class="invalid-feedback">Please provide a valid number of vessels between 0 and 3.</div>
+                <select id="ca" name="ca" class="form-select" required>
+                    <option value="">Select number of vessels</option>
+                    <option value="0" {% if request.form.get('ca') == '0' %}selected{% endif %}>0</option>
+                    <option value="1" {% if request.form.get('ca') == '1' %}selected{% endif %}>1</option>
+                    <option value="2" {% if request.form.get('ca') == '2' %}selected{% endif %}>2</option>
+                    <option value="3" {% if request.form.get('ca') == '3' %}selected{% endif %}>3</option>
+                </select>
+                <div class="invalid-feedback">Please select the number of vessels between 0 and 3.</div>
             </div>
-
 
             <!-- Thalassemia results dropdown -->
             <div class="mb-3">
@@ -240,7 +245,7 @@
                     }
                 }
                 if (input.id === 'thalach') {
-                    if (input.value < 0 || input.value > 200) { // Adjust max value as needed
+                    if (input.value < 60 || input.value > 200) { // Adjust max value as needed
                         input.classList.add('is-invalid');
                         errorIcon.style.display = 'inline';
                     }

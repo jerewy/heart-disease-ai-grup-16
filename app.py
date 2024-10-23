@@ -80,7 +80,7 @@ else:
 # Route for the home page (prediction form)
 @app.route('/')
 def home():
-    return render_template('dashboard.html')
+    return dashboard()
 
 @app.route('/dashboard')
 def dashboard():

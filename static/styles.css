@@ -20,6 +20,15 @@ body {
 }
 
 /* Navbar Styles */
+.navbar-title {
+    color: rgb(228, 50, 50); /* White color for visibility */
+    font-size: 20px; /* Font size */
+    font-weight: bold; /* Bold text */
+    margin-right: 20px; /* Space between title and nav items */
+    padding: 0.5em 1em; /* Uniform padding */
+}
+
+/* Updated Navbar Styles */
 .main-navbar {
     background-color: #333;
     padding: 0.5em; /* Adjust padding as needed */
@@ -32,10 +41,11 @@ body {
     list-style-type: none; /* Remove default list styles */
     margin: 0; /* Remove margin */
     padding: 0; /* Remove padding */
+    display: flex; /* Flex container for horizontal alignment */
+    align-items: center; /* Center nav items with the title */
 }
 
 .main-navbar ul li {
-    display: inline; /* Horizontal list items */
     margin-right: 20px; /* Space between items */
 }
 
