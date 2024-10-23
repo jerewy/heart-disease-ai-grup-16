@@ -1,5 +1,10 @@
-ECHO is on.
-
+# Ignore Python bytecode files
 __pycache__/
 *.pyc
+
+# Ignore virtual environments
+venv/
+test_env/
+
+# Ignore environment variable files
 .env
