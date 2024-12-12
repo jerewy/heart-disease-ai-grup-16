@@ -1,0 +1,48 @@
+### How to Run the Heart Disease Prediction Application
+
+#### Prerequisites:
+- Install **Python 3.8 or higher**.
+- Install `conda` or `virtualenv` (optional, for creating a virtual environment).
+
+---
+
+#### Steps:
+
+1. **Download and Extract the Files**:
+   - Ensure all files, including `app.py` and `calibrated_rf_model_isotonic_disease_model.pkl`, are in the same folder.
+
+2. **Open a Terminal**:
+   - Navigate to the folder where the files are located using the `cd` command.
+
+3. **Set Up the Environment**:
+   - Option 1: Using `conda`:
+     ```
+     conda create -n heart-disease-env python=3.8
+     conda activate heart-disease-env
+     ```
+   - Option 2: Using `virtualenv`:
+     ```
+     python -m venv venv
+     venv\Scripts\activate  # For Windows
+     source venv/bin/activate  # For macOS/Linux
+     ```
+
+4. **Install Required Libraries**:
+   - pip install -r requirements.txt
+
+5. **Run the Application**:
+   - python app.py
+
+6. **Access the Application**:
+- Open a browser and go to:
+  ```
+  http://127.0.0.1:5000
+  ```
+- Alternatively, use the IP address displayed in the terminal (e.g., `http://192.168.1.105:5000`).
+
+---
+
+#### Notes:
+- Make sure `calibrated_rf_model_isotonic_disease_model.pkl` is in the same folder as `app.py`.
+- To stop the application, press `CTRL+C` in the terminal.
+
